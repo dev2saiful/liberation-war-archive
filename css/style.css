@@ -1,0 +1,946 @@
+/*
+==========================================================
+  style.css — Liberation War Archive
+  Custom styles on top of Bootstrap 5
+
+  TABLE OF CONTENTS:
+  1.  CSS Variables (colors, fonts)
+  2.  Global / Base Styles
+  3.  Navbar
+  4.  Hero Slider (Carousel)
+  5.  Section Headers (shared)
+  6.  Documents Section
+  7.  Interviews Section
+  8.  Gallery Section
+  9.  Lightbox Modal
+  10. Contact / Contribute Section
+  11. Footer
+  12. Document Details Page
+  13. Dark Mode Overrides
+==========================================================
+*/
+
+
+/* ──────────────────────────────────────────────────────
+   1. CSS VARIABLES
+   Define our color palette here. Using variables makes
+   it easy to change colors in one place.
+────────────────────────────────────────────────────── */
+:root {
+  --color-primary:   #006A4E;   /* Deep Green */
+  --color-secondary: #f42a41;   /* Red */
+  --color-dark:      #1A1A1A;   /* Near-black (sidebar) */
+  --color-light-bg:  #f8f9fa;   /* Off-white sections */
+  --color-card-bg:   #ffffff;
+  --color-text:      #2d2d2d;
+  --color-text-muted:#6c757d;
+  --color-border:    #e0e0e0;
+
+  --font-main: 'Roboto', sans-serif;
+
+  --shadow-card: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow-hover: 0 8px 30px rgba(0,0,0,0.15);
+  --radius-card: 12px;
+  --radius-btn: 6px;
+
+  --section-pad: 80px 0;        /* vertical padding for sections */
+}
+
+
+/* ──────────────────────────────────────────────────────
+   2. GLOBAL / BASE STYLES
+────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--color-text);
+  background-color: #ffffff;
+  line-height: 1.7;
+  scroll-behavior: smooth;         /* smooth scroll when clicking nav links */
+}
+
+/* Reusable section padding */
+.section-padding {
+  padding: var(--section-pad);
+}
+
+/* Alternating background for sections */
+.interviews-section {
+  background-color: var(--color-light-bg);
+}
+
+
+/* ──────────────────────────────────────────────────────
+   3. NAVBAR
+────────────────────────────────────────────────────── */
+
+/* The nav background: white in light mode */
+#mainNavbar {
+  background-color: #ffffff;
+  border-bottom: 3px solid var(--color-primary);
+  padding: 10px 0;
+  transition: background-color 0.3s;
+}
+
+/* Nav links */
+.nav-link {
+  font-weight: 500;
+  color: var(--color-text) !important;
+  padding: 6px 12px !important;
+  border-radius: var(--radius-btn);
+  transition: color 0.2s, background 0.2s;
+}
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-primary) !important;
+  background-color: rgba(0, 106, 78, 0.08);
+}
+
+/* ── Logo Box ── */
+.logo-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary);
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* The red circle accent on the logo */
+.logo-circle {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-secondary);
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.logo-text {
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+/* Brand name next to the logo box */
+.brand-name {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.brand-line1 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.brand-line2 {
+  font-size: 11px;
+  color: var(--color-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ── Dark/Light Mode Toggle Button ── */
+.theme-toggle-btn {
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.theme-toggle-btn:hover {
+  background-color: #004d39;
+  transform: scale(1.02);
+  color: #fff;
+}
+
+
+/* ──────────────────────────────────────────────────────
+   4. HERO SLIDER (Carousel)
+────────────────────────────────────────────────────── */
+
+/* Each slide is full-width and tall */
+.hero-slide {
+  height: 90vh;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* Slide 1: background image via placeholder image */
+.slide-1 {
+  background: linear-gradient(135deg, rgba(0,106,78,0.92) 0%, rgba(0,50,35,0.97) 100%),
+              url('https://picsum.photos/seed/hero1/1600/900') center/cover no-repeat;
+}
+
+/* Slide 2: background image via placeholder image */
+.slide-2 {
+  background: linear-gradient(135deg, rgba(180,20,30,0.88) 0%, rgba(26,26,26,0.97) 100%),
+              url('https://picsum.photos/seed/hero2/1600/900') center/cover no-repeat;
+}
+
+/* Custom caption (overrides Bootstrap's default which is bottom-centered) */
+.carousel-caption-custom {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: left;
+  color: #fff;
+  max-width: 650px;
+}
+
+/* Small text above the main title */
+.slide-eyebrow {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 16px;
+}
+
+.slide-title {
+  font-size: clamp(2.2rem, 5vw, 3.8rem); /* responsive font size */
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.slide-subtitle {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.8);
+  max-width: 520px;
+  margin-bottom: 30px;
+  line-height: 1.7;
+}
+
+/* CTA Button on slides */
+.hero-btn {
+  background-color: var(--color-secondary);
+  color: #ffffff;
+  border: none;
+  padding: 12px 30px;
+  font-weight: 700;
+  border-radius: var(--radius-btn);
+  font-size: 15px;
+  transition: background-color 0.2s, transform 0.15s;
+}
+.hero-btn:hover {
+  background-color: #cc1e30;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+
+/* ──────────────────────────────────────────────────────
+   5. SECTION HEADERS (shared across all sections)
+────────────────────────────────────────────────────── */
+.section-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-secondary);
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+/* Underline accent below the title */
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: var(--color-primary);
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+
+/* ──────────────────────────────────────────────────────
+   6. DOCUMENTS SECTION
+────────────────────────────────────────────────────── */
+
+/* ── Document Tabs ── */
+.doc-tabs {
+  border-bottom: 2px solid var(--color-border);
+  gap: 4px;
+}
+
+/* Each tab button */
+.doc-tabs .nav-link {
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
+  padding: 10px 20px;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  margin-bottom: -2px;
+}
+.doc-tabs .nav-link:hover {
+  color: var(--color-primary);
+  border-bottom-color: rgba(0, 106, 78, 0.3);
+  background: transparent;
+}
+.doc-tabs .nav-link.active {
+  color: var(--color-primary);
+  border-bottom: 3px solid var(--color-primary);
+  background: transparent;
+}
+
+/* ── Postcards ── */
+.postcard {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  background-color: var(--color-card-bg);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.postcard:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+/* Feature image at the top of each postcard */
+.postcard-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+/* Publish date line */
+.postcard-date {
+  font-size: 13px;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+/* Post title */
+.postcard-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+/* Short excerpt */
+.postcard-excerpt {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* Details button */
+.btn-details {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-btn);
+  padding: 8px 18px;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+.btn-details:hover {
+  background-color: #004d39;
+  color: #fff;
+}
+
+
+/* ──────────────────────────────────────────────────────
+   7. INTERVIEWS SECTION
+────────────────────────────────────────────────────── */
+
+.interview-card {
+  background-color: var(--color-card-bg);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s, box-shadow 0.25s;
+  border: 1px solid var(--color-border);
+}
+.interview-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* The 16:9 video wrapper */
+.video-wrapper {
+  border-radius: 0;
+}
+.video-wrapper iframe {
+  border: none;
+}
+
+.interview-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+.interview-summary {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  margin-bottom: 10px;
+}
+
+/* Tag badge (Freedom Fighter, Historian, Survivor) */
+.interview-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background-color: rgba(0,106,78,0.1);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+
+/* ──────────────────────────────────────────────────────
+   8. GALLERY SECTION
+────────────────────────────────────────────────────── */
+/* TAB */
+.nav-link.active {
+  background: #006A4E !important;
+  color: #fff !important;
+}
+/* GALLERY */
+.gallery-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/* FILTER BUTTON */
+.filter-btn {
+  margin: 5px;
+  border: 1px solid #ddd;
+}
+
+.filter-btn.active {
+  background: #006A4E;
+  color: #fff;
+}
+
+/* HIDE ITEMS */
+.gallery-item {
+  display: block;
+}
+
+
+/* ──────────────────────────────────────────────────────
+   10. CONTACT / CONTRIBUTE SECTION
+────────────────────────────────────────────────────── */
+
+/* The big card that wraps both sidebar and form */
+.contact-card {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-hover);
+}
+
+/* ── Left Dark Sidebar ── */
+.contact-sidebar {
+  background-color: var(--color-dark);  /* #1A1A1A */
+  color: #fff;
+  padding: 50px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-title {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 16px;
+  position: relative;
+  padding-bottom: 16px;
+}
+/* Green underline accent */
+.sidebar-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 4px;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+}
+
+.sidebar-description {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.sidebar-divider {
+  border-color: rgba(255,255,255,0.15);
+  margin-bottom: 24px;
+}
+
+/* ── Info Items (email, location, phone) ── */
+.sidebar-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.info-icon-box {
+  width: 38px;
+  height: 38px;
+  background-color: var(--color-primary);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.info-label {
+  display: block;
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.info-value {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.9);
+}
+
+/* ── Social Links ── */
+.sidebar-socials {
+  display: flex;
+  gap: 12px;
+}
+.social-link {
+  width: 38px;
+  height: 38px;
+  background-color: rgba(255,255,255,0.1);
+  color: #fff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+.social-link:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+/* ── Right Form Area ── */
+.contact-form-area {
+  background-color: #ffffff;
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--color-text);
+}
+.required-star {
+  color: var(--color-secondary);
+}
+
+.form-control {
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 10px 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-control:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(0, 106, 78, 0.15);
+}
+
+/* ── Upload / Drag & Drop Area ── */
+.upload-area {
+  border: 2px dashed var(--color-primary);
+  border-radius: 10px;
+  padding: 32px 20px;
+  text-align: center;
+  cursor: pointer;
+  background-color: rgba(0, 106, 78, 0.03);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+.upload-area:hover,
+.upload-area.drag-over {
+  background-color: rgba(0, 106, 78, 0.08);
+  border-color: var(--color-secondary);
+}
+
+.upload-icon-wrapper {
+  margin-bottom: 10px;
+}
+.upload-icon {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+}
+.upload-main-text {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+.upload-sub-text {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 6px;
+}
+.upload-browse-link {
+  color: var(--color-primary);
+  font-weight: 600;
+  cursor: pointer;
+}
+.upload-formats-text {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* List of selected files shown below the upload box */
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--color-text);
+  background-color: rgba(0, 106, 78, 0.07);
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+.file-item i {
+  color: var(--color-primary);
+}
+
+/* ── Submit Button ── */
+.submit-btn {
+  background-color: var(--color-dark);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 1px;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.submit-btn:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+
+/* ──────────────────────────────────────────────────────
+   11. FOOTER
+────────────────────────────────────────────────────── */
+.site-footer {
+  background-color: var(--color-dark);
+  color: rgba(255,255,255,0.75);
+}
+
+.footer-logo {
+  background-color: var(--color-primary);
+}
+.footer-tagline {
+  font-size: 0.88rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.6);
+}
+
+.footer-heading {
+  font-weight: 700;
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-links li {
+  margin-bottom: 8px;
+}
+.footer-links a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+.footer-links a:hover {
+  color: var(--color-primary);
+}
+
+.footer-newsletter-text {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 12px;
+}
+.footer-newsletter .form-control {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 13px;
+}
+.footer-newsletter .form-control::placeholder {
+  color: rgba(255,255,255,0.4);
+}
+.footer-sub-btn {
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.footer-bottom {
+  border-color: rgba(255,255,255,0.1) !important;
+}
+.footer-copy,
+.footer-credit {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+}
+
+
+/* ──────────────────────────────────────────────────────
+   12. DOCUMENT DETAILS PAGE
+────────────────────────────────────────────────────── */
+
+/* Card at the top of the detail page */
+.detail-header-card {
+  background: linear-gradient(135deg, rgba(0,106,78,0.05), rgba(0,106,78,0.1));
+  border: 1px solid rgba(0,106,78,0.2);
+}
+
+/* Large icon on the detail page */
+.detail-doc-icon {
+  width: 64px;
+  height: 64px;
+  background-color: var(--color-primary);
+  color: #fff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.detail-title {
+  font-size: 1.8rem;
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+/* Document PDF preview box */
+.doc-preview-box {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.doc-preview-header {
+  background-color: var(--color-dark);
+  color: #fff;
+  font-size: 14px;
+}
+.doc-preview-body {
+  min-height: 300px;
+  background-color: var(--color-light-bg);
+}
+
+/* Transcription section */
+.transcription-card {
+  border-left: 4px solid var(--color-primary);
+  background-color: rgba(0,106,78,0.04);
+  border: 1px solid rgba(0,106,78,0.15);
+  border-left: 4px solid var(--color-primary);
+}
+.transcription-text {
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--color-text);
+}
+.transcription-attribution {
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0;
+}
+
+/* Right-side metadata card */
+.metadata-card {
+  border: 1px solid var(--color-border);
+  background-color: var(--color-card-bg);
+}
+.metadata-title {
+  font-weight: 800;
+  color: var(--color-text);
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 10px;
+}
+.meta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 14px;
+}
+.meta-label {
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+.meta-value {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Related docs list */
+.related-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.related-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 14px;
+}
+.related-list a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.related-list a:hover {
+  color: var(--color-secondary);
+}
+
+
+/* ──────────────────────────────────────────────────────
+   13. DARK MODE OVERRIDES
+   Bootstrap's data-bs-theme="dark" changes most things,
+   but we need to override our custom colors here.
+────────────────────────────────────────────────────── */
+[data-bs-theme="dark"] {
+  --color-card-bg:   #1e1e1e;
+  --color-border:    #333333;
+  --color-light-bg:  #161616;
+  --color-text:      #e8e8e8;
+  --color-text-muted:#9a9a9a;
+}
+
+[data-bs-theme="dark"] #mainNavbar {
+  background-color: #121212;
+  border-bottom-color: var(--color-primary);
+}
+
+[data-bs-theme="dark"] .nav-link {
+  color: #e8e8e8 !important;
+}
+[data-bs-theme="dark"] .nav-link:hover,
+[data-bs-theme="dark"] .nav-link.active {
+  color: #4ecf9e !important;
+}
+
+[data-bs-theme="dark"] .document-card,
+[data-bs-theme="dark"] .interview-card {
+  background-color: #1e1e1e;
+  border-color: #333;
+}
+
+[data-bs-theme="dark"] .filter-bar {
+  background-color: #1a1a1a;
+  border-color: #333;
+}
+
+[data-bs-theme="dark"] .interviews-section {
+  background-color: #111111;
+}
+
+[data-bs-theme="dark"] .upload-area {
+  background-color: rgba(0, 106, 78, 0.06);
+}
+
+[data-bs-theme="dark"] .contact-form-area {
+  background-color: #1a1a1a;
+}
+
+[data-bs-theme="dark"] .form-control {
+  background-color: #2a2a2a;
+  border-color: #444;
+  color: #e8e8e8;
+}
+
+[data-bs-theme="dark"] .section-title {
+  color: #e8e8e8;
+}
+
+[data-bs-theme="dark"] .metadata-card,
+[data-bs-theme="dark"] .detail-header-card,
+[data-bs-theme="dark"] .transcription-card,
+[data-bs-theme="dark"] .doc-preview-body {
+  background-color: #1a1a1a;
+  border-color: #333;
+}
