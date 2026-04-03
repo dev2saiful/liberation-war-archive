@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liberation War Archive</title>
+
+  <!-- Google Font: Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5 CSS (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Bootstrap Icons (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+
+  <!-- Our Custom Styles -->
+  <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       1. NAVBAR
+       - Sticky at the top
+       - Logo on the left, nav links on the right
+       - Dark/Light mode toggle button
+  ============================================================ -->
+  <nav class="navbar navbar-expand-lg sticky-top" id="mainNavbar">
+    <div class="container">
+
+      <!-- Logo Area -->
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <!-- Simple logo made with CSS colors -->
+        <div class="logo-box">
+          <span class="logo-circle"></span>
+          <span class="logo-text">LWA</span>
+        </div>
+        <div class="brand-name">
+          <span class="brand-line1">Liberation War</span>
+          <span class="brand-line2">Archive</span>
+        </div>
+      </a>
+
+      <!-- Mobile Toggle Button -->
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+              aria-controls="navbarMenu" aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Nav Links -->
+      <div class="collapse navbar-collapse" id="navbarMenu">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-lg-1">
+          <li class="nav-item">
+            <a class="nav-link active" href="#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#documents">Documents</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#interviews">Interviews</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#gallery">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+  <!-- END NAVBAR -->
+
+
+  <!-- ============================================================
+       2. HERO SLIDER (Bootstrap Carousel)
+       - 2 full-width slides
+       - Each slide: background image, title, subtitle, CTA button
+  ============================================================ -->
+  <section id="home">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+      <!-- Slide Indicators (the dots at the bottom) -->
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0"
+                class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+      </div>
+
+      <!-- Slides Wrapper -->
+      <div class="carousel-inner">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active hero-slide slide-1">
+          <div class="carousel-caption-custom">
+            <p class="slide-eyebrow">1971 — Bangladesh Liberation War</p>
+            <h1 class="slide-title">Preserving Our<br/>Sacred History</h1>
+            <p class="slide-subtitle">
+              A digital archive dedicated to documenting the courage, sacrifice,
+              and triumph of the Bangladesh Liberation War.
+            </p>
+            <a href="#documents" class="btn hero-btn">
+              Explore Documents <i class="bi bi-arrow-right ms-2"></i>
+            </a>
+          </div>
+        </div>
+        <!-- END Slide 1 -->
+
+        <!-- Slide 2 -->
+        <div class="carousel-item hero-slide slide-2">
+          <div class="carousel-caption-custom">
+            <p class="slide-eyebrow">Witness Testimonies</p>
+            <h1 class="slide-title">Voices That Must<br/>Never Be Silenced</h1>
+            <p class="slide-subtitle">
+              Hear first-hand accounts from freedom fighters, survivors, and
+              witnesses who lived through the nine months of liberation struggle.
+            </p>
+            <a href="#interviews" class="btn hero-btn">
+              Watch Interviews <i class="bi bi-play-circle ms-2"></i>
+            </a>
+          </div>
+        </div>
+        <!-- END Slide 2 -->
+
+      </div>
+      <!-- END Slides Wrapper -->
+
+      <!-- Previous / Next Controls -->
+      <button class="carousel-control-prev" type="button"
+              data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button"
+              data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+
+    </div>
+  </section>
+  <!-- END HERO SLIDER -->
+
+
+  <!-- ============================================================
+       3. DOCUMENTS SECTION
+       - Simple Tab buttons: All, Declarations, Treaties, Telegrams
+       - Each tab shows its own set of postcards
+       - Postcard: feature image, date, title, excerpt, View Details button
+  ============================================================ -->
+  <section id="documents" class="section-padding">
+    <div class="container">
+
+      <!-- Section Header -->
+      <div class="section-header text-center mb-5">
+        <span class="section-tag">Historical Records</span>
+        <h2 class="section-title">Declassified Documents</h2>
+        <p class="section-subtitle">
+          Official treaties, declarations, telegrams, and government records
+          from the 1971 Liberation War.
+        </p>
+      </div>
+
+      <!-- ── TAB BUTTONS ──
+           Each button has a data-tab attribute.
+           Clicking it shows the matching tab panel below.
+           Bootstrap's "nav nav-tabs" gives us the styled tab bar. -->
+      <ul class="nav nav-tabs doc-tabs mb-4" id="docTabs">
+        <li class="nav-item">
+          <button class="nav-link active" data-tab="all">All</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" data-tab="declarations">Declarations</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" data-tab="treaties">Treaties</button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" data-tab="telegrams">Telegrams</button>
+        </li>
+      </ul>
+
+      <!-- ── TAB PANELS ──
+           Each panel has an id that matches a data-tab button value.
+           Only the active panel is visible (others have d-none). -->
+
+      <!-- TAB: All (shows all 3 postcards) -->
+      <div class="tab-panel" id="tab-all">
+        <div class="row g-4">
+
+          <!-- Postcard 1 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="card postcard h-100">
+              <!-- Feature Image -->
+              <img src="https://picsum.photos/seed/doc1/600/300" class="card-img-top postcard-img" alt="Declaration of Independence" />
+              <div class="card-body">
+                <!-- Publish Date -->
+                <p class="postcard-date"><i class="bi bi-calendar3 me-1"></i> March 26, 1971</p>
+                <!-- Title -->
+                <h5 class="card-title postcard-title">Declaration of Independence</h5>
+                <!-- Excerpt -->
+                <p class="card-text postcard-excerpt">
+                  The historic proclamation declaring the independence of Bangladesh,
+                  broadcast via radio from Chittagong on March 26, 1971.
+                </p>
+              </div>
+              <div class="card-footer bg-transparent border-0 pb-3 px-3">
+                <!-- Opens document-details.html in a new tab -->
+                <a href="document-details.html" target="_blank" class="btn btn-details w-100">
+                  View Details <i class="bi bi-box-arrow-up-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Postcard 2 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="card postcard h-100">
+              <img src="https://picsum.photos/seed/doc2/600/300" class="card-img-top postcard-img" alt="Instrument of Surrender" />
+              <div class="card-body">
+                <p class="postcard-date"><i class="bi bi-calendar3 me-1"></i> December 16, 1971</p>
+                <h5 class="card-title postcard-title">Instrument of Surrender</h5>
+                <p class="card-text postcard-excerpt">
+                  The formal surrender document signed by Pakistani forces, marking
+                  the end of the war and the birth of Bangladesh as a sovereign nation.
+                </p>
+              </div>
+              <div class="card-footer bg-transparent border-0 pb-3 px-3">
+                <a href="document-details.html" target="_blank" class="btn btn-details w-100">
+                  View Details <i class="bi bi-box-arrow-up-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Postcard 3 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="card postcard h-100">
+              <img src="https://picsum.photos/seed/doc3/600/300" class="card-img-top postcard-img" alt="Blood Telegram" />
+              <div class="card-body">
+                <p class="postcard-date"><i class="bi bi-calendar3 me-1"></i> April 06, 1971</p>
+                <h5 class="card-title postcard-title">Blood Telegram — US Consulate</h5>
+                <p class="card-text postcard-excerpt">
+                  The classified telegram sent by US Consul General Archer Blood
+                  condemning the Pakistani military crackdown in East Pakistan.
+                </p>
+              </div>
+              <div class="card-footer bg-transparent border-0 pb-3 px-3">
+                <a href="document-details.html" target="_blank" class="btn btn-details w-100">
+                  View Details <i class="bi bi-box-arrow-up-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- END TAB: All -->
+
+
+      <!-- TAB: Declarations (hidden by default) -->
+      <div class="tab-panel d-none" id="tab-declarations">
+        <div class="row g-4">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card postcard h-100">
+              <img src="https://picsum.photos/seed/doc1/600/300" class="card-img-top postcard-img" alt="Declaration of Independence" />
+              <div class="card-body">
+                <p class="postcard-date"><i class="bi bi-calendar3 me-1"></i> March 26, 1971</p>
+                <h5 class="card-title postcard-title">Declaration of Independence</h5>
+                <p class="card-text postcard-excerpt">
+                  The historic proclamation declaring the independence of Bangladesh,
+                  broadcast via radio from Chittagong on March 26, 1971.
+                </p>
+              </div>
+              <div class="card-footer bg-transparent border-0 pb-3 px-3">
+                <a href="document-details.html" target="_blank" class="btn btn-details w-100">
+                  View Details <i class="bi bi-box-arrow-up-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card postcard h-100">
+              <img src="https://picsum.photos/seed/doc4/600/300" class="card-img-top postcard-img" alt="Proclamation of Independence" />
+              <div class="card-body">
+                <p class="postcard-date"><i class="bi bi-calendar3 me-1"></i> April 10, 1971</p>
+                <h5 class="card-title postcard-title">Proclamation of Independence</h5>
+                <p class="card-text postcard-excerpt">
+                  The formal proclamation issued by the Mujibnagar Government,
+                  establishing the legal framework for the provisional government.
+                </p>
+              </div>
+              <div class="card-footer bg-transparent border-0 pb-3 px-3">
+                <a href="document-details.html" target="_blank" class="btn btn-details w-100">
+                  View Details <i class="bi bi-box-arrow-up-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- END TAB: Declarations -->
+
+
+      <!-- TAB: Treaties (hidden by default) -->
+      <div class="tab-panel d-none" id="tab-treaties">
+        <div class="row g-4">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card postcard h-100">
+              <img src="https://picsum.photos/seed/doc2/600/300" class="card-img-top postcard-img" alt="Instrument of Surrender" />
+              <div class="card-body">
+                <p class="postcard-date"><i class="bi bi-calendar3 me-1"></i> December 16, 1971</p>
+                <h5 class="card-title postcard-title">Instrument of Surrender</h5>
+                <p class="card-text postcard-excerpt">
+                  The formal surrender document signed by Pakistani forces, marking
+                  the end of the war and the birth of Bangladesh as a sovereign nation.
+                </p>
+              </div>
+              <div class="card-footer bg-transparent border-0 pb-3 px-3">
+                <a href="document-details.html" target="_blank" class="btn btn-details w-100">
+                  View Details <i class="bi bi-box-arrow-up-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card postcard h-100">
+              <img src="https://picsum.photos/seed/doc5/600/300" class="card-img-top postcard-img" alt="Indo-Soviet Treaty" />
+              <div class="card-body">
+                <p class="postcard-date"><i class="bi bi-calendar3 me-1"></i> August 09, 1971</p>
+                <h5 class="card-title postcard-title">Indo-Soviet Treaty of Peace</h5>
+                <p class="card-text postcard-excerpt">
+                  The friendship and cooperation treaty between India and Soviet Union
+                  that shaped the diplomatic landscape of the Liberation War.
+                </p>
+              </div>
+              <div class="card-footer bg-transparent border-0 pb-3 px-3">
+                <a href="document-details.html" target="_blank" class="btn btn-details w-100">
+                  View Details <i class="bi bi-box-arrow-up-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- END TAB: Treaties -->
+
+
+      <!-- TAB: Telegrams (hidden by default) -->
+      <div class="tab-panel d-none" id="tab-telegrams">
+        <div class="row g-4">
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card postcard h-100">
+              <img src="https://picsum.photos/seed/doc3/600/300" class="card-img-top postcard-img" alt="Blood Telegram" />
+              <div class="card-body">
+                <p class="postcard-date"><i class="bi bi-calendar3 me-1"></i> April 06, 1971</p>
+                <h5 class="card-title postcard-title">Blood Telegram — US Consulate</h5>
+                <p class="card-text postcard-excerpt">
+                  The classified telegram sent by US Consul General Archer Blood
+                  condemning the Pakistani military crackdown in East Pakistan.
+                </p>
+              </div>
+              <div class="card-footer bg-transparent border-0 pb-3 px-3">
+                <a href="document-details.html" target="_blank" class="btn btn-details w-100">
+                  View Details <i class="bi bi-box-arrow-up-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card postcard h-100">
+              <img src="https://picsum.photos/seed/doc6/600/300" class="card-img-top postcard-img" alt="UN Secretary Telegram" />
+              <div class="card-body">
+                <p class="postcard-date"><i class="bi bi-calendar3 me-1"></i> November 20, 1971</p>
+                <h5 class="card-title postcard-title">UN Secretary-General's Appeal</h5>
+                <p class="card-text postcard-excerpt">
+                  A telegram from the UN Secretary-General urging ceasefire and
+                  calling for humanitarian access during the Liberation War crisis.
+                </p>
+              </div>
+              <div class="card-footer bg-transparent border-0 pb-3 px-3">
+                <a href="document-details.html" target="_blank" class="btn btn-details w-100">
+                  View Details <i class="bi bi-box-arrow-up-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- END TAB: Telegrams -->
+
+    </div>
+  </section>
+  <!-- END DOCUMENTS SECTION -->
+
+
+  <!-- ============================================================
+       4. INTERVIEWS SECTION
+       - 3-column layout
+       - Each column: embedded video placeholder (16:9 ratio), title, summary
+  ============================================================ -->
+  <section id="interviews" class="section-padding interviews-section">
+    <div class="container">
+
+      <!-- Section Header -->
+      <div class="section-header text-center mb-5">
+        <span class="section-tag">Eyewitness Accounts</span>
+        <h2 class="section-title">Video Interviews</h2>
+        <p class="section-subtitle">
+          Recorded testimonies from freedom fighters, survivors, and
+          historians who witnessed the Liberation War firsthand.
+        </p>
+      </div>
+
+      <!-- 3-Column Video Grid -->
+      <div class="row g-4">
+
+        <!-- Video 1 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="interview-card">
+            <!-- Bootstrap ratio keeps video at 16:9 aspect ratio -->
+            <div class="ratio ratio-16x9 video-wrapper">
+              <!--
+                This is a YouTube embed placeholder.
+                Replace the src URL with your real video URL.
+                The ?rel=0 hides related videos at the end.
+              -->
+              <iframe
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
+                title="Interview with Bir Uttam Shafaat Jamil"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="interview-info p-3">
+              <h5 class="interview-title">Bir Uttam Shafaat Jamil</h5>
+              <p class="interview-summary">
+                A legendary sector commander shares his account of the battle
+                strategies, the nine-month guerrilla warfare, and the final
+                victory on December 16, 1971.
+              </p>
+              <span class="interview-tag"><i class="bi bi-person-badge me-1"></i>Freedom Fighter</span>
+            </div>
+          </div>
+        </div>
+        <!-- END Video 1 -->
+
+        <!-- Video 2 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="interview-card">
+            <div class="ratio ratio-16x9 video-wrapper">
+              <iframe
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
+                title="Interview with Dr. Nilufar Ahmed"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="interview-info p-3">
+              <h5 class="interview-title">Dr. Nilufar Ahmed</h5>
+              <p class="interview-summary">
+                A historian and researcher recounts the systematic atrocities
+                committed during the war and explains how documentation efforts
+                began to preserve the truth for future generations.
+              </p>
+              <span class="interview-tag"><i class="bi bi-book me-1"></i>Historian</span>
+            </div>
+          </div>
+        </div>
+        <!-- END Video 2 -->
+
+        <!-- Video 3 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="interview-card">
+            <div class="ratio ratio-16x9 video-wrapper">
+              <iframe
+                src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0"
+                title="Interview with Rekha Begum"
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="interview-info p-3">
+              <h5 class="interview-title">Rekha Begum</h5>
+              <p class="interview-summary">
+                A survivor from Dhaka tells her powerful personal story of
+                displacement and loss, and how the spirit of the Liberation
+                War shaped her life and community.
+              </p>
+              <span class="interview-tag"><i class="bi bi-heart me-1"></i>Survivor</span>
+            </div>
+          </div>
+        </div>
+        <!-- END Video 3 -->
+
+      </div>
+      <!-- END 3-Column Video Grid -->
+
+    </div>
+  </section>
+  <!-- END INTERVIEWS SECTION -->
+
+
+  <!-- ============================================================
+       5. GALLERY SECTION
+       - Category filter buttons (All, Events, Locations)
+       - 6 image grid
+       - Click image → opens in Bootstrap Modal (Lightbox)
+       - Modal has Zoom and Download buttons
+  ============================================================ -->
+<!-- ================= GALLERY ================= -->
+<section class="container py-5">
+
+  <!-- FILTER -->
+  <div class="text-center mb-4">
+    <button class="btn filter-btn active" data-filter="all">All</button>
+    <button class="btn filter-btn" data-filter="events">Events</button>
+    <button class="btn filter-btn" data-filter="locations">Locations</button>
+  </div>
+
+  <!-- IMAGES -->
+  <div class="row g-3">
+
+    <div class="col-md-4 gallery-item" data-category="events">
+      <img src="https://picsum.photos/seed/1/600/400" class="gallery-img"
+           onclick="openLightbox(this.src)">
+    </div>
+
+    <div class="col-md-4 gallery-item" data-category="locations">
+      <img src="https://picsum.photos/seed/2/600/400" class="gallery-img"
+           onclick="openLightbox(this.src)">
+    </div>
+
+    <div class="col-md-4 gallery-item" data-category="events">
+      <img src="https://picsum.photos/seed/3/600/400" class="gallery-img"
+           onclick="openLightbox(this.src)">
+    </div>
+
+    <div class="col-md-4 gallery-item" data-category="locations">
+      <img src="https://picsum.photos/seed/4/600/400" class="gallery-img"
+           onclick="openLightbox(this.src)">
+    </div>
+
+    <div class="col-md-4 gallery-item" data-category="events">
+      <img src="https://picsum.photos/seed/5/600/400" class="gallery-img"
+           onclick="openLightbox(this.src)">
+    </div>
+
+    <div class="col-md-4 gallery-item" data-category="locations">
+      <img src="https://picsum.photos/seed/6/600/400" class="gallery-img"
+           onclick="openLightbox(this.src)">
+    </div>
+
+  </div>
+
+</section>
+
+<!-- LIGHTBOX -->
+<div class="modal fade" id="lightboxModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <img id="lightboxImg" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- ============================================================
+       6. CONTACT & CONTRIBUTE FORM
+       - Left dark sidebar: title, description, contact info
+       - Right white area: form fields + drag & drop upload + submit
+  ============================================================ -->
+  <section id="contact" class="section-padding contact-section">
+    <div class="container">
+
+      <!-- Section Header -->
+      <div class="section-header text-center mb-5">
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="section-title">Contact & Contribute</h2>
+        <p class="section-subtitle">
+          Help us grow this archive by sharing documents, photographs, or personal accounts.
+        </p>
+      </div>
+
+      <!-- Contact Card: Left + Right Layout -->
+      <div class="contact-card">
+        <div class="row g-0">
+
+          <!-- LEFT SIDEBAR (Dark) -->
+          <div class="col-lg-4 contact-sidebar">
+            <!-- Big Title -->
+            <h3 class="sidebar-title">Contribute</h3>
+
+            <!-- Description -->
+            <p class="sidebar-description">
+              If you have photographs, documents, personal letters, or any materials
+              related to the 1971 Liberation War, we urge you to share them with us.
+              Your contribution helps preserve history for future generations.
+            </p>
+
+            <!-- Divider Line -->
+            <hr class="sidebar-divider" />
+
+            <!-- Contact Info Items -->
+            <div class="sidebar-info-item">
+              <div class="info-icon-box">
+                <i class="bi bi-envelope-fill"></i>
+              </div>
+              <div>
+                <span class="info-label">Email Us</span>
+                <span class="info-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f9988b9a91908f9cb995909b9c8b988d9096978e988bd79b9d">[email&#160;protected]</a></span>
+              </div>
+            </div>
+
+            <div class="sidebar-info-item">
+              <div class="info-icon-box">
+                <i class="bi bi-geo-alt-fill"></i>
+              </div>
+              <div>
+                <span class="info-label">Location</span>
+                <span class="info-value">Dhaka, Bangladesh</span>
+              </div>
+            </div>
+
+            <div class="sidebar-info-item">
+              <div class="info-icon-box">
+                <i class="bi bi-telephone-fill"></i>
+              </div>
+              <div>
+                <span class="info-label">Phone</span>
+                <span class="info-value">+880 2 1234 5678</span>
+              </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="sidebar-socials mt-4">
+              <a href="#" class="social-link" title="Facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="social-link" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+              <a href="#" class="social-link" title="YouTube"><i class="bi bi-youtube"></i></a>
+            </div>
+
+          </div>
+          <!-- END LEFT SIDEBAR -->
+
+          <!-- RIGHT FORM AREA (White) -->
+          <div class="col-lg-8 contact-form-area">
+            <div class="contact-form-inner p-4 p-lg-5">
+
+              <!-- Row 1: Full Name + Email (side by side on desktop) -->
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label for="fullName" class="form-label">Full Name <span class="required-star">*</span></label>
+                  <input type="text" class="form-control" id="fullName"
+                         placeholder="e.g. Rahman Hossain" required />
+                </div>
+                <div class="col-md-6">
+                  <label for="emailInput" class="form-label">Email Address <span class="required-star">*</span></label>
+                  <input type="email" class="form-control" id="emailInput"
+                         placeholder="you@example.com" required />
+                </div>
+              </div>
+
+              <!-- Row 2: Subject (full width) -->
+              <div class="mb-3">
+                <label for="subjectInput" class="form-label">Subject <span class="required-star">*</span></label>
+                <input type="text" class="form-control" id="subjectInput"
+                       placeholder="e.g. Submitting photographs from 1971" required />
+              </div>
+
+              <!-- Row 3: Message Textarea -->
+              <div class="mb-3">
+                <label for="messageInput" class="form-label">Message</label>
+                <textarea class="form-control" id="messageInput" rows="4"
+                          placeholder="Tell us about the materials you wish to contribute..."></textarea>
+              </div>
+
+              <!-- Row 4: Drag & Drop Upload Area -->
+              <div class="mb-4">
+                <label class="form-label">Upload Files</label>
+                <!--
+                  The upload area: user can click to select files or drag & drop.
+                  JavaScript handles the drag events and displays file names.
+                -->
+                <div class="upload-area" id="uploadArea"
+                     onclick="document.getElementById('fileInput').click()">
+                  <input type="file" id="fileInput" accept=".pdf,.jpg,.png"
+                         multiple hidden onchange="handleFileSelect(this)" />
+                  <div class="upload-icon-wrapper">
+                    <i class="bi bi-cloud-upload upload-icon"></i>
+                  </div>
+                  <p class="upload-main-text">Drag & Drop files here</p>
+                  <p class="upload-sub-text">or <span class="upload-browse-link">browse to upload</span></p>
+                  <p class="upload-formats-text">Supported: PDF, JPG, PNG • Max 10MB each</p>
+                </div>
+                <!-- Shows the names of selected files -->
+                <div id="fileList" class="file-list mt-2"></div>
+              </div>
+
+              <!-- Row 5: Submit Button (Full Width) -->
+              <button type="button" class="btn submit-btn w-100" onclick="handleSubmit()">
+                <i class="bi bi-send me-2"></i> SUBMIT CONTRIBUTION
+              </button>
+
+              <!-- Success Message (hidden by default, shown after submit) -->
+              <div id="successMsg" class="alert alert-success mt-3 d-none" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                Thank you! Your contribution has been submitted successfully.
+              </div>
+
+            </div>
+          </div>
+          <!-- END RIGHT FORM AREA -->
+
+        </div>
+      </div>
+      <!-- END Contact Card -->
+
+    </div>
+  </section>
+  <!-- END CONTACT SECTION -->
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row g-4 py-5">
+
+        <!-- Footer Col 1: Brand -->
+        <div class="col-lg-4 col-md-6">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <div class="logo-box footer-logo">
+              <span class="logo-circle"></span>
+              <span class="logo-text">LWA</span>
+            </div>
+          </div>
+          <p class="footer-tagline">
+            A digital memorial to the 3 million martyrs and the brave
+            freedom fighters of Bangladesh's Liberation War of 1971.
+          </p>
+        </div>
+
+        <!-- Footer Col 2: Quick Links -->
+        <div class="col-lg-2 col-md-6">
+          <h6 class="footer-heading">Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#documents">Documents</a></li>
+            <li><a href="#interviews">Interviews</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Footer Col 3: Resources -->
+        <div class="col-lg-3 col-md-6">
+          <h6 class="footer-heading">Resources</h6>
+          <ul class="footer-links">
+            <li><a href="#">About the Archive</a></li>
+            <li><a href="#">Research Guidelines</a></li>
+            <li><a href="#">Contribution Policy</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <!-- Footer Col 4: Newsletter -->
+        <div class="col-lg-3 col-md-6">
+          <h6 class="footer-heading">Stay Updated</h6>
+          <p class="footer-newsletter-text">
+            Subscribe to receive updates when new documents or interviews are added.
+          </p>
+          <div class="input-group footer-newsletter">
+            <input type="email" class="form-control" placeholder="Your email" />
+            <button class="btn footer-sub-btn" type="button">Subscribe</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Bar -->
+      <div class="footer-bottom border-top py-3 d-flex flex-wrap justify-content-between align-items-center">
+        <p class="mb-0 footer-copy">
+          &copy; 2024 Liberation War Archive. All rights reserved.
+        </p>
+        <p class="mb-0 footer-credit">
+          Built with <i class="bi bi-heart-fill text-danger"></i> to preserve history.
+        </p>
+      </div>
+
+    </div>
+  </footer>
+  <!-- END FOOTER -->
+
+
+  <!-- Bootstrap 5 JS (CDN) — must be at the bottom of body -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS for interactivity -->
+  <script src="js/scripts.js"></script>
+</body>
+</html>
